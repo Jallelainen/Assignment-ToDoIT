@@ -1,4 +1,5 @@
 ﻿using System;
+using Assignment_ToDoIT.Model;
 
 namespace Assignment_ToDoIT
 {
@@ -6,7 +7,8 @@ namespace Assignment_ToDoIT
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //Person lasse = new Person("Lasse", "Larsson");
+            //Console.WriteLine(lasse.PersonInformation());
         }
     }
 }
