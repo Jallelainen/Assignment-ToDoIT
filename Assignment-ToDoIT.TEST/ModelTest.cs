@@ -8,7 +8,7 @@ namespace Assignment_ToDoIT.TEST
 
     public class ModelTest
     {
-        // TEMPLATE
+        /* TEMPLATE
         [Fact]
         public void Test1()
         {
@@ -21,7 +21,7 @@ namespace Assignment_ToDoIT.TEST
             // Assert
 
         }
-
+        */
         
         [Fact]
         public void PersonTest()
@@ -55,25 +55,5 @@ namespace Assignment_ToDoIT.TEST
             Assert.Contains(description, result.ToDoInformation());
         }
 
-        [Fact]
-        public void PersonSequencerTest()
-        {
-            // Arrange
-            int personId = 0;
-            int expected = 1;
-
-            // Act
-                //tests nextPersonId method
-            int actual = PersonSequencer.nextPersonId(personId);
-                //tests reset Method
-            int actual2 = PersonSequencer.reset(expected);
-
-            // Assert
-                // Asserts nextPersonId
-            Assert.Equal(expected, actual);
-                // Asserts reset
-            Assert.Equal(personId, actual2);
-
-        }
     }
 }
