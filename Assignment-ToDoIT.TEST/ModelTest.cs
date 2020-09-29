@@ -5,7 +5,7 @@ using Assignment_ToDoIT.Model;
 namespace Assignment_ToDoIT.TEST
 {
 
-    public class PersonTest
+    public class ModelTest
     {
         // TEMPLATE
         [Fact]
@@ -23,7 +23,7 @@ namespace Assignment_ToDoIT.TEST
 
         
         [Fact]
-        public void NameConstructorTest()
+        public void PersonTest()
         {
             // Arrange
             string firstName = "Test";
@@ -36,6 +36,22 @@ namespace Assignment_ToDoIT.TEST
             Assert.NotNull(result);
             Assert.Contains(firstName, result.PersonInformation());
             Assert.Contains(lastName, result.PersonInformation());
+        }
+
+        [Fact]
+        public void ToDoTest()
+        {
+            // Arrange
+            int toDoId = 1;
+            string description = "This is a description.";
+
+            // Act
+            Todo result = new Todo(toDoId, description);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Contains(toDoId.ToString(), result.ToDoInformation());
+            Assert.Contains(description, result.ToDoInformation());
         }
     }
 }

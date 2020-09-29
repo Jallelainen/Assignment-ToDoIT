@@ -6,15 +6,18 @@ namespace Assignment_ToDoIT.Model
 {
     public class Person
     {
+        //Static
+        private static int counter = 0;
+
         //Fields
-        private readonly int personId = 0;
+        private readonly int personId;
         string firstName;
         string lastName;
 
         //Constructor
         public Person ( string personFirstName, string personLastName)
         {
-            ++personId;
+            personId = ++counter;
 
             firstName = personFirstName;
             lastName = personLastName;
