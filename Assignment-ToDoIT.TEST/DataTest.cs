@@ -41,6 +41,27 @@ namespace Assignment_ToDoIT.TEST
             Assert.Equal(personId, actual2);
 
         }
+        
+        [Fact]
+        public void TodoSequencerTest()
+        {
+            // Arrange
+            int taskId = 0;
+            int expected = 1;
+
+            // Act
+            //tests nextTaskId method
+            int actual = TodoSequencer.nextTaskId(taskId);
+            //tests reset Method
+            int actual2 = TodoSequencer.reset(expected);
+
+            // Assert
+            // Asserts nextTaskId
+            Assert.Equal(expected, actual);
+            // Asserts reset
+            Assert.Equal(taskId, actual2);
+
+        }
 
     }
 }
