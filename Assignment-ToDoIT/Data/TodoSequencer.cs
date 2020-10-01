@@ -8,18 +8,17 @@ namespace Assignment_ToDoIT.Data
     {
         private static int taskId;
 
-        public static int nextTaskId(int id)
+        public static int NextTaskId()
         {
-            id = ++taskId;
+           int newId = ++taskId;
 
-            return id;
+            return newId;
         }
 
-        public static int reset(int id)
+        public static void Reset()
         {
-            id = taskId = 0;
+            taskId = 0;
 
-            return id;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment_ToDoIT.Data;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,7 +8,7 @@ namespace Assignment_ToDoIT.Model
     public class Todo
     {
         //Fields
-        readonly int toDoId;
+        readonly int toDoId = 0;
         string description;
         bool done;
         Person asignee;
@@ -15,7 +16,7 @@ namespace Assignment_ToDoIT.Model
         //Constructor
         public Todo (int toDoId, string description)
         {
-            this.toDoId = toDoId;
+            this.toDoId = TodoSequencer.NextTaskId();
             this.description = description;
         }
 

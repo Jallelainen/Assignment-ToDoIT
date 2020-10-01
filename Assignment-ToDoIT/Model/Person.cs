@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Assignment_ToDoIT.Data;
 
 namespace Assignment_ToDoIT.Model
 {
     public class Person
     {
-        //Static
-        private static int counter = 0;
 
         //Fields
         private readonly int personId;
-        string firstName;
-        string lastName;
+        private string firstName;
+        private string lastName;
+
+        public int PersonId { get { return personId; } }
 
         //Constructor
-        public Person ( string personFirstName, string personLastName)
+        public Person (int id, string personFirstName, string personLastName)
         {
-            personId = ++counter;
+            personId = id;
 
             firstName = personFirstName;
             lastName = personLastName;

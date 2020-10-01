@@ -11,19 +11,18 @@ namespace Assignment_ToDoIT.Data
 
         //static methods
         //increases the value of personId by one
-        public static int nextPersonId(int id)
+        public static int nextPersonId()
         {
-            id = ++personId;
+
+            int id = ++personId;
 
             return id;
         }
 
         //resets the value of personId to zero
-        public static int reset(int id)
+        public static void Reset()
         {
-            id = personId = 0;
-
-            return id;
+            personId = 0;
         }
     }
 }

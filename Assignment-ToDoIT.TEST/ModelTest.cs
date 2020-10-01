@@ -27,23 +27,26 @@ namespace Assignment_ToDoIT.TEST
         public void PersonTest()
         {
             // Arrange
+            int expectedId = 1;
             string firstName = "Test";
             string lastName = "Testsson";
 
             // Act
-            Person result = new Person(firstName, lastName);
+            Person result = new Person(expectedId, firstName, lastName);
 
             // Assert
             Assert.NotNull(result);
             Assert.Contains(firstName, result.PersonInformation());
             Assert.Contains(lastName, result.PersonInformation());
+            Assert.Contains(expectedId.ToString(), result.PersonInformation());
         }
 
         [Fact]
         public void ToDoTest()
         {
             // Arrange
-            int toDoId = 1;
+            int toDoId = 0;
+            int expected = 1;
             string description = "This is a description.";
 
             // Act
@@ -51,7 +54,7 @@ namespace Assignment_ToDoIT.TEST
 
             // Assert
             Assert.NotNull(result);
-            Assert.Contains(toDoId.ToString(), result.ToDoInformation());
+            Assert.Contains(expected.ToString(), result.ToDoInformation());
             Assert.Contains(description, result.ToDoInformation());
         }
 
