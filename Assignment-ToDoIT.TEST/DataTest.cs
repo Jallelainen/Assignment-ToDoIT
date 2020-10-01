@@ -9,7 +9,7 @@ namespace Assignment_ToDoIT.TEST
     {
         /* TEMPLATE
         [Fact]
-        public void Test1()
+        public void Test()
         {
             // Arrange
 
@@ -103,7 +103,7 @@ namespace Assignment_ToDoIT.TEST
         }
 
         [Fact]
-        public void SizeTest()
+        public void PeopleSizeTest()
         {
             // Arrange
             PersonSequencer.Reset();
@@ -121,7 +121,24 @@ namespace Assignment_ToDoIT.TEST
         }
 
         [Fact]
-        public void FindAllTest()
+        public void TodoSizeTest()
+        {
+            // Arrange
+            TodoSequencer.Reset();
+            TodoItems todo = new TodoItems();
+            int expected = 2;
+            todo.NewTodoItem("Do this");
+            todo.NewTodoItem("Do that");
+
+            // Act
+            int actual = todo.Size();
+
+            // Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void PeopleFindAllTest()
         {
             // Arrange
             PersonSequencer.Reset();
@@ -137,14 +154,32 @@ namespace Assignment_ToDoIT.TEST
         }
 
         [Fact]
-        public void FindbyIdTest()
+        public void TodoFindAllTest()
+        {
+            // Arrange
+            TodoSequencer.Reset();
+            TodoItems todo = new TodoItems();
+            todo.NewTodoItem("Do this");
+            todo.NewTodoItem("Do that");
+
+            // Act
+            Todo[] actual = todo.FindAllTodo();
+
+            // Assert
+            Assert.True(actual.Length == 2);
+        }
+
+        [Fact]
+        public void PeopleFindbyIdTest()
         {
             // Arrange
             int personId = 1;
             int personId2 = 2;
             int personId3 = 3;
+
             People people = new People();
             PersonSequencer.Reset();
+
             people.NewPerson("Lasse", "Nääf");
             people.NewPerson("Nils", "Korv");
 
@@ -169,6 +204,34 @@ namespace Assignment_ToDoIT.TEST
         }
 
         [Fact]
+        public void TodoFindByIdTest()
+        {
+            // Arrange
+            int todoId = 1;
+            int todoId2 = 2;
+            int todoId3 = 3;
+            
+            TodoItems todo = new TodoItems();
+            TodoSequencer.Reset();
+
+            todo.NewTodoItem("Do this");
+            todo.NewTodoItem("Do that");
+
+
+            // Act
+            Todo actual = todo.FindByIdTodo(todoId);
+            Todo actual2 = todo.FindByIdTodo(todoId2);
+            Todo actual3 = todo.FindByIdTodo(todoId3);
+
+            // Assert
+            Assert.Contains("Do this", actual.ToDoInformation());
+            Assert.Contains("Do that", actual2.ToDoInformation());
+
+            Assert.True(actual3 == null);
+
+        }
+
+        [Fact]
         public void NewPersonTest()
         {
             // Arrange
@@ -190,7 +253,25 @@ namespace Assignment_ToDoIT.TEST
         }
 
         [Fact]
-        public void ClearTest()
+        public void NewTodoItemTest()
+        {
+            // Arrange
+            TodoItems todo = new TodoItems();
+            string description = "Do this";
+            int expectedId = 1;
+            TodoSequencer.Reset();
+
+            // Act
+            Todo result = todo.NewTodoItem(description);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Contains(description, result.ToDoInformation());
+            Assert.Contains(expectedId.ToString(), result.ToDoInformation());
+        }
+
+        [Fact]
+        public void PeopleClearTest()
         {
             // Arrange
             int expected = 0;
@@ -207,5 +288,22 @@ namespace Assignment_ToDoIT.TEST
             Assert.Equal(actual, expected);
         }
 
+        [Fact]
+        public void TodoClearTest()
+        {
+            // Arrange
+            int expected = 0;
+            TodoItems todo = new TodoItems();
+            TodoSequencer.Reset();
+            todo.NewTodoItem("Do this");
+            todo.NewTodoItem("Do that");
+
+            // Act
+            todo.ClearTodo();
+            int actual = todo.Size();
+
+            // Assert
+            Assert.Equal(actual, expected);
+        }
     }
 }

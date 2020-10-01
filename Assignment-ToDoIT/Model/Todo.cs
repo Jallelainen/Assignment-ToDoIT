@@ -8,15 +8,17 @@ namespace Assignment_ToDoIT.Model
     public class Todo
     {
         //Fields
-        readonly int toDoId = 0;
-        string description;
-        bool done;
-        Person asignee;
+        private readonly int toDoId;
+        private string description;
+        private bool done;
+        private Person asignee;
+
+        public int TodoId { get { return toDoId; } }
 
         //Constructor
         public Todo (int toDoId, string description)
         {
-            this.toDoId = TodoSequencer.NextTaskId();
+            this.toDoId = toDoId;
             this.description = description;
         }
 

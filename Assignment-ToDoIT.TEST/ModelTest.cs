@@ -45,12 +45,12 @@ namespace Assignment_ToDoIT.TEST
         public void ToDoTest()
         {
             // Arrange
-            int toDoId = 0;
+            //int toDoId = 0;
             int expected = 1;
             string description = "This is a description.";
 
             // Act
-            Todo result = new Todo(toDoId, description);
+            Todo result = new Todo(expected, description);
 
             // Assert
             Assert.NotNull(result);
