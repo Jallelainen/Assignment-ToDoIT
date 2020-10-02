@@ -54,6 +54,22 @@ namespace Assignment_ToDoIT.Data
             
         }
 
+        public void RemovePerson(int personId)
+        {
+            for (int find = 0; find < peopleArray.Length; find++)
+            {
+                if (peopleArray[find].PersonId == personId)
+                {
+                    for (int remove = find; remove < peopleArray.Length - 1; remove++)
+                    {
+                        peopleArray[remove] = peopleArray[remove + 1];
+                    }
+
+                    Array.Resize(ref peopleArray, peopleArray.Length - 1);
+                }
+            }
+        }
+
 
     }
 }

@@ -418,5 +418,68 @@ namespace Assignment_ToDoIT.TEST
             Assert.DoesNotContain(job2, actual);
             Assert.DoesNotContain(job3, actual);
         }
+
+        [Fact]
+        public void RemoveTodoItemTest()
+        {
+            // Arrange
+            TodoItems todo = new TodoItems();
+            TodoSequencer.Reset();
+
+            int expected = 4;
+            int taskId = 2;
+
+            Todo job1 = todo.NewTodoItem("Do this");
+            Todo job2 = todo.NewTodoItem("Do that");
+            Todo job3 = todo.NewTodoItem("Do this again");
+            Todo job4 = todo.NewTodoItem("This is the job");
+            Todo job5 = todo.NewTodoItem("This is the other job");
+
+            // Act
+            todo.RemoveTodoItem(taskId);
+            int size = todo.Size();
+            Todo[] actual = todo.FindAllTodo();
+
+            // Assert
+            Assert.Equal(expected, size);
+            Assert.Contains(job1, actual);
+            Assert.DoesNotContain(job2, actual);
+            Assert.Contains(job3, actual);
+            Assert.Contains(job4, actual);
+            Assert.Contains(job5, actual);
+        }
+
+        [Fact]
+        public void RemovePersonTest()
+        {
+            // Arrange
+            People people = new People();
+            PersonSequencer.Reset();
+
+            int expected = 3;
+            int personId = 3;
+            int personId2 = 1;
+
+            Person lasse = people.NewPerson("Lasse", "Nääf");
+            Person albin = people.NewPerson("Albin", "Ek");
+            Person robert = people.NewPerson("Robert", "Lönn");
+            Person elroy = people.NewPerson("Elroy", "Bok");
+            Person lina = people.NewPerson("Lina", "Qvist");
+
+            // Act
+            people.RemovePerson(personId);
+            people.RemovePerson(personId2);
+            int size = people.Size();
+            Person[] actual = people.FindAll();
+
+            // Assert
+            Assert.Equal(expected, size);
+            Assert.DoesNotContain(lasse, actual);
+            Assert.Contains(albin, actual);
+            Assert.DoesNotContain(robert, actual);
+            Assert.Contains(elroy, actual);
+            Assert.Contains(lina, actual);
+        }
+
     }
 }

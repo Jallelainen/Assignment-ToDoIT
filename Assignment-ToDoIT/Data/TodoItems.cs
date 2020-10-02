@@ -118,5 +118,23 @@ namespace Assignment_ToDoIT.Data
 
             return unassignedArray;
         }
+
+        public void RemoveTodoItem(int todoId)
+        {
+            for (int i = 0; i < todoArray.Length; i++)
+            {
+                if (todoArray[i].TodoId == todoId)
+                {
+
+                    for (int k = i; k < todoArray.Length - 1; k++)
+                    {
+                        todoArray[k] = todoArray[k + 1];
+                    }
+
+                    Array.Resize(ref todoArray, todoArray.Length - 1);
+                }
+
+            }
+        }
     }
 }
