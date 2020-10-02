@@ -305,5 +305,118 @@ namespace Assignment_ToDoIT.TEST
             // Assert
             Assert.Equal(actual, expected);
         }
+
+        [Fact]
+        public void FindByDoneStatusTest()
+        {
+            // Arrange
+            People people = new People();
+            TodoItems todo = new TodoItems();
+            PersonSequencer.Reset();
+            TodoSequencer.Reset();
+
+            Person lasse = people.NewPerson("Lasse", "Nääf");
+            Person nils = people.NewPerson("Nils", "Korv");
+            Person albin = people.NewPerson("Albin", "Ek");
+
+            Todo job1 = todo.NewTodoItem("Do this", false, lasse);
+            Todo job2 = todo.NewTodoItem("Do this", true, nils);
+            Todo job3 = todo.NewTodoItem("Do this", true, albin);
+
+            // Act
+            Todo[] actual = todo.FindByDoneStatus();
+
+            // Assert
+            Assert.True(actual.Length == 2);
+            Assert.Contains(job2, actual);
+            Assert.Contains(job3, actual);
+            Assert.DoesNotContain(job1, actual);
+        }
+
+        [Fact]
+        public void FindByAssigneeIdTest()
+        {
+            // Arrange
+            People people = new People();
+            TodoItems todo = new TodoItems();
+            PersonSequencer.Reset();
+            TodoSequencer.Reset();
+
+            Person lasse = people.NewPerson("Lasse", "Nääf");
+            Person albin = people.NewPerson("Albin", "Ek");
+
+            Todo job1 = todo.NewTodoItem("Do this", false, lasse);
+            Todo job2 = todo.NewTodoItem("Do this", true, lasse);
+            Todo job3 = todo.NewTodoItem("Do this", true, albin);
+
+            // Act
+            Todo[] actual = todo.FindByAssignee(1);
+            Todo[] actual2 = todo.FindByAssignee(2);
+
+            // Assert
+            Assert.True(actual.Length == 2);
+            Assert.True(actual2.Length == 1);
+            Assert.Contains(job1, actual);
+            Assert.Contains(job2, actual);
+            Assert.Contains(job3, actual2);
+        }
+
+        [Fact]
+        public void FindByAssigneePersonTest()
+        {
+            // Arrange
+            People people = new People();
+            TodoItems todo = new TodoItems();
+            PersonSequencer.Reset();
+            TodoSequencer.Reset();
+
+            Person lasse = people.NewPerson("Lasse", "Nääf");
+            Person albin = people.NewPerson("Albin", "Ek");
+
+            Todo job1 = todo.NewTodoItem("Do this", false, lasse);
+            Todo job2 = todo.NewTodoItem("Do this", true, lasse);
+            Todo job3 = todo.NewTodoItem("Do this", true, albin);
+
+            // Act
+            Todo[] actual = todo.FindByAssignee(lasse);
+            Todo[] actual2 = todo.FindByAssignee(albin);
+
+            // Assert
+            Assert.True(actual.Length == 2);
+            Assert.True(actual2.Length == 1);
+            Assert.Contains(job1, actual);
+            Assert.Contains(job2, actual);
+            Assert.Contains(job3, actual2);
+        }
+
+        [Fact]
+        public void FindUnassignedTest()
+        {
+            // Arrange
+            People people = new People();
+            TodoItems todo = new TodoItems();
+            PersonSequencer.Reset();
+            TodoSequencer.Reset();
+
+            Person lasse = people.NewPerson("Lasse", "Nääf");
+            Person albin = people.NewPerson("Albin", "Ek");
+
+            Todo job1 = todo.NewTodoItem("Do this", false, lasse);
+            Todo job2 = todo.NewTodoItem("Do this", true, lasse);
+            Todo job3 = todo.NewTodoItem("Do this", true, albin);
+            Todo jobRight = todo.NewTodoItem("This is the one");
+            Todo jobRight2 = todo.NewTodoItem("This is the other one");
+
+            // Act
+            Todo[] actual = todo.FindUnassignedTodoItems();
+
+            // Assert
+            Assert.True(actual.Length == 2);
+            Assert.Contains(jobRight, actual);
+            Assert.Contains(jobRight2, actual);
+            Assert.DoesNotContain(job1, actual);
+            Assert.DoesNotContain(job2, actual);
+            Assert.DoesNotContain(job3, actual);
+        }
     }
 }
