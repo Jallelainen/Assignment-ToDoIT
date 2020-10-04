@@ -7,20 +7,6 @@ namespace Assignment_ToDoIT.TEST
 {
     public class DataTest
     {
-        /* TEMPLATE
-        [Fact]
-        public void Test()
-        {
-            // Arrange
-
-
-            // Act
-
-
-            // Assert
-
-        }
-        */
 
         [Fact]
         public void PersonSequencerTest()
@@ -31,8 +17,7 @@ namespace Assignment_ToDoIT.TEST
 
 
             // Act
-            //tests nextPersonId method
-            PersonSequencer.Reset();
+            PersonSequencer.Reset();// resets sequencer to always get expected results
             int actual = PersonSequencer.nextPersonId();
             int actual2 = PersonSequencer.nextPersonId();
 
@@ -69,17 +54,16 @@ namespace Assignment_ToDoIT.TEST
             // Arrange
             int expected = 1;
             TodoSequencer.NextTaskId();
-            int num = TodoSequencer.NextTaskId();
-            TodoSequencer.Reset();
+            int num = TodoSequencer.NextTaskId();//Creates two ids and sets second to int variable
+            TodoSequencer.Reset();// resets to get expected
 
 
-            //tests reset Method
+            //Act
             int actual = TodoSequencer.NextTaskId();
 
             // Assert
-            // Asserts reset
             Assert.Equal(expected, actual);
-            Assert.True(num >= 2);
+            Assert.True(num >= 2);//checks if int num is 2 or less
 
         }
 
@@ -109,7 +93,7 @@ namespace Assignment_ToDoIT.TEST
             PersonSequencer.Reset();
             int expected = 2;
             People people = new People();
-            people.NewPerson("Lars", "Lilja");
+            people.NewPerson("Lars", "Lilja");// creates people to fill array
             people.NewPerson("Jens", "Vik");
 
             // Act
@@ -125,7 +109,7 @@ namespace Assignment_ToDoIT.TEST
         {
             // Arrange
             TodoSequencer.Reset();
-            TodoItems todo = new TodoItems();
+            TodoItems todo = new TodoItems(); //creates object to call method with
             int expected = 2;
             todo.NewTodoItem("Do this");
             todo.NewTodoItem("Do that");
@@ -191,6 +175,7 @@ namespace Assignment_ToDoIT.TEST
             // Assert
 
             //person1
+            //checks if both names is contained in object, then check if expected ID is right
             Assert.Contains("Lasse", actual.PersonInformation());
             Assert.Contains("Nääf", actual.PersonInformation());
             Assert.Contains(personId.ToString(), actual.PersonInformation());
@@ -200,7 +185,7 @@ namespace Assignment_ToDoIT.TEST
             Assert.Contains("Korv", actual2.PersonInformation());
             Assert.Contains(personId2.ToString(), actual2.PersonInformation());
 
-            Assert.True(actual3 == null);
+            Assert.True(actual3 == null);//control to make sure only two people exists in array
         }
 
         [Fact]
@@ -246,7 +231,7 @@ namespace Assignment_ToDoIT.TEST
             Person result = people.NewPerson(firstName, lastName);
 
             // Assert
-            Assert.NotNull(result);
+            Assert.NotNull(result);// checks that method actually worked
             Assert.Contains(firstName, result.PersonInformation());
             Assert.Contains(lastName, result.PersonInformation());
             Assert.Contains(expectedId.ToString(), result.PersonInformation());
@@ -277,7 +262,7 @@ namespace Assignment_ToDoIT.TEST
             int expected = 0;
             People people = new People();
             PersonSequencer.Reset();
-            people.NewPerson("Lasse", "Nääf");
+            people.NewPerson("Lasse", "Nääf");// creates persons to be removed
             people.NewPerson("Nils", "Korv");
 
             // Act
@@ -319,7 +304,7 @@ namespace Assignment_ToDoIT.TEST
             Person nils = people.NewPerson("Nils", "Korv");
             Person albin = people.NewPerson("Albin", "Ek");
 
-            Todo job1 = todo.NewTodoItem("Do this", false, lasse);
+            Todo job1 = todo.NewTodoItem("Do this", false, lasse);// sets false to check that it is excluded in method
             Todo job2 = todo.NewTodoItem("Do this", true, nils);
             Todo job3 = todo.NewTodoItem("Do this", true, albin);
 
@@ -327,7 +312,7 @@ namespace Assignment_ToDoIT.TEST
             Todo[] actual = todo.FindByDoneStatus();
 
             // Assert
-            Assert.True(actual.Length == 2);
+            Assert.True(actual.Length == 2);// checks that its actually two objects instead of three
             Assert.Contains(job2, actual);
             Assert.Contains(job3, actual);
             Assert.DoesNotContain(job1, actual);
@@ -351,7 +336,7 @@ namespace Assignment_ToDoIT.TEST
 
             // Act
             Todo[] actual = todo.FindByAssignee(1);
-            Todo[] actual2 = todo.FindByAssignee(2);
+            Todo[] actual2 = todo.FindByAssignee(2);// finds both persons
 
             // Assert
             Assert.True(actual.Length == 2);
@@ -378,7 +363,7 @@ namespace Assignment_ToDoIT.TEST
             Todo job3 = todo.NewTodoItem("Do this", true, albin);
 
             // Act
-            Todo[] actual = todo.FindByAssignee(lasse);
+            Todo[] actual = todo.FindByAssignee(lasse); //uses person object as parameter
             Todo[] actual2 = todo.FindByAssignee(albin);
 
             // Assert
@@ -429,6 +414,7 @@ namespace Assignment_ToDoIT.TEST
             int expected = 4;
             int taskId = 2;
 
+            //creates many todo items
             Todo job1 = todo.NewTodoItem("Do this");
             Todo job2 = todo.NewTodoItem("Do that");
             Todo job3 = todo.NewTodoItem("Do this again");
@@ -437,13 +423,13 @@ namespace Assignment_ToDoIT.TEST
 
             // Act
             todo.RemoveTodoItem(taskId);
-            int size = todo.Size();
-            Todo[] actual = todo.FindAllTodo();
+            int size = todo.Size(); // get size
+            Todo[] actual = todo.FindAllTodo(); //get array
 
             // Assert
             Assert.Equal(expected, size);
             Assert.Contains(job1, actual);
-            Assert.DoesNotContain(job2, actual);
+            Assert.DoesNotContain(job2, actual);// checkthat it has actually been removed
             Assert.Contains(job3, actual);
             Assert.Contains(job4, actual);
             Assert.Contains(job5, actual);
@@ -473,6 +459,7 @@ namespace Assignment_ToDoIT.TEST
             Person[] actual = people.FindAll();
 
             // Assert
+            //same as previous test but two removed this time
             Assert.Equal(expected, size);
             Assert.DoesNotContain(lasse, actual);
             Assert.Contains(albin, actual);

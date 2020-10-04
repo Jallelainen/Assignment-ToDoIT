@@ -23,6 +23,7 @@ namespace Assignment_ToDoIT.TEST
         }
         */
         
+        //tests constructors
         [Fact]
         public void PersonTest()
         {
@@ -45,7 +46,6 @@ namespace Assignment_ToDoIT.TEST
         public void ToDoTest()
         {
             // Arrange
-            //int toDoId = 0;
             int expected = 1;
             string description = "This is a description.";
 

@@ -10,7 +10,7 @@ namespace Assignment_ToDoIT.Data
         private static int personId;
 
         //static methods
-        //increases the value of personId by one
+        //increases the value of personId by one. called when creating a new object. automatically assigns a new ID
         public static int nextPersonId()
         {
 

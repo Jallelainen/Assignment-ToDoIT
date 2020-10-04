@@ -8,6 +8,7 @@ namespace Assignment_ToDoIT.Data
     {
         private static int taskId;
 
+        //called when creating a new object. automatically assigns a new ID
         public static int NextTaskId()
         {
            int newId = ++taskId;
